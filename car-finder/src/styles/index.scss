@@ -1,3 +1,267 @@
+@font-face {
+  font-family: 'Open Sans Condensed';
+  src: url('../fonts/OpenSans_Condensed-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  src: url('../fonts/OpenSans_Condensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+$subtext-color: #d3d3d3;
+$form-panel-bg-color: #f2f2f2;
+$form-blue: rgb(52,143,168);
+$form-disabled-color: #909090;
+$selected-option-color: #212121;
+
 html {
-  background: gray;
+  min-height: 100vh;
+  background-image: url('../images/car-finder-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+header {
+padding-top: 2.5vw;
+padding-bottom: 2.5vw;
+  display: block;
+  margin: 0vw 10vw auto;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+p {
+  color: #ffffff;
+}
+
+.form-grid {
+  background-color: $form-panel-bg-color;
+  padding: 5vw;
+  width: 70vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  border-radius: 15px;
+}
+fieldset {
+  box-sizing: border-box;
+  width: 90%;
+  height: 70%;
+  min-inline-size: 0;
+  margin: 0 auto;
+  padding: 0;
+  border: .3vw solid $form-disabled-color;
+}
+
+legend {
+  color: $form-disabled-color;
+  text-align: left;
+}
+
+label {
+  font-weight: 600;
+  padding-bottom: .5vw;
+  color: $form-blue;
+  font-size: 2.5vw;
+  display: block;
+  width: 100%;
+  margin-left: 1vw;
+  text-align: left;
+}
+
+fieldset:focus-within,
+fieldset.is-active,
+fieldset.has-value {
+  border-color: $form-blue;
+}
+
+fieldset:focus-within legend,
+fieldset.is-active legend,
+fieldset.has-value legend {
+  color: $form-blue;
+}
+
+fieldset:focus-within select,
+fieldset.is-active select,
+fieldset.has-value select {
+  color: $form-blue;
+}
+
+select {
+  box-sizing: border-box;
+  background-color: $form-panel-bg-color;
+  color: $form-disabled-color;
+  display: block;
+  width: 100%;
+  min-height: 2.5rem;
+  margin: 0;
+  padding: 0 .75rem;
+  border: 0;
+  border-radius: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+option {
+  background-color: #ffffff;
+  color: $selected-option-color;
+}
+
+option:checked {
+  background-color: $form-blue;
+  color: #ffffff;
+}
+
+.native-select {
+  display: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-button {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 2rem 0 .75rem;
+  background-color: $form-panel-bg-color;
+  border: 0;
+  color: $form-disabled-color;
+  cursor: pointer;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.custom-select-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: .75rem;
+  width: 0;
+  height: 0;
+  border-left: .3rem solid transparent;
+  border-right: .3rem solid transparent;
+  border-top: .4rem solid $form-disabled-color;
+  transform: translateY(-50%);
+}
+
+fieldset:focus-within .custom-select-button,
+fieldset.is-active .custom-select-button,
+fieldset.has-value .custom-select-button {
+  color: $form-blue;
+}
+
+fieldset:focus-within .custom-select-button::after,
+fieldset.is-active .custom-select-button::after,
+fieldset.has-value .custom-select-button::after {
+  border-top-color: $form-blue;
+}
+
+.custom-select-menu {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + .5rem);
+  left: 0;
+  width: 100%;
+  max-height: 15rem;
+  margin: 0;
+  padding: .35rem 0;
+  display: none;
+  overflow-y: auto;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid $form-disabled-color;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 .75rem 1.25rem rgba(0, 0, 0, .2);
+}
+
+.custom-select.is-open .custom-select-menu {
+  display: block;
+}
+
+.custom-select-option {
+  padding: .35rem .75rem;
+  color: $selected-option-color;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.custom-select-option.is-selected {
+  background-color: $form-blue;
+  color: #ffffff;
+}
+
+.custom-select-option:hover {
+  background-color: $subtext-color;
+}
+
+.custom-select-option.is-selected:hover {
+  background-color: $form-blue;
+}
+
+.form-grid-item {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+
+.form-grid-item + .form-grid-item {
+  border-left: 1px solid $subtext-color;
+  padding-left: 0;
+}
+@media screen and (min-width: 1400px) {
+  label{
+    font-size: 2vw;
+  }
+  fieldset {
+height: 60%;
+  border-width: .2vw;
+}
+}
+@media screen and (max-width: 768px) {
+  fieldset {
+height: 65%;
+  border-width: .5vw;
+}
+  label {
+    font-size: 4.5vw;
+    display: flex;
+  }
+  header {
+padding-top: 5vw;
+padding-bottom: 5vw;
+    display: block;
+    margin: 0vw 7.5vw auto;
+  }
+
+  .form-grid {
+    width: 75vw;
+    justify-items: stretch;
+  }
+
+  select {
+    width: 100%;
+  }
 }
